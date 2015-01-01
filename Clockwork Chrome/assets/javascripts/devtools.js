@@ -1,5 +1,5 @@
 chrome.devtools.panels.create(
-	"Clockwork",
+	"Skillshare Clockwork",
 	"assets/images/icon-toolbar.png",
 	"app.html",
 	function(panel) {
