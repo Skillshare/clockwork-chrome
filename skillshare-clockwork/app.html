@@ -149,7 +149,11 @@
 								<tbody>
 									<tr ng-repeat="sql in activeDatabaseQueries">
 										<td ng-show="showDatabaseConnectionColumn()">{{sql.connection}}</td>
-										<td>{{sql.query}}</td>
+										<td>{{sql.query}}
+											<ul ng-show="sql.trace.length">
+												<li ng-repeat="line in sql.trace">{{line}}</li>
+											</ul>
+										</td>
 										<td class="database-duration">{{sql.duration | number:3}} ms</td>
 									</tr>
 								</tbody>
