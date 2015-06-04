@@ -150,9 +150,7 @@
 									<tr ng-repeat="sql in activeDatabaseQueries">
 										<td ng-show="showDatabaseConnectionColumn()">{{sql.connection}}</td>
 										<td>{{sql.query}}
-											<ul ng-show="sql.trace.length">
-												<li ng-repeat="line in sql.trace">{{line}}</li>
-											</ul>
+											<pretty-print data="sql.trace">
 										</td>
 										<td class="database-duration">{{sql.duration | number:3}} ms</td>
 									</tr>
@@ -174,7 +172,7 @@
 									<tr ng-repeat="message in activeLog">
 										<td class="log-date">{{message.time | date:'HH:mm:ss'}}</td>
 										<td class="log-level">{{message.level}}</td>
-										<td class="log-message"><pretty-print data="message.message"></td>
+										<td class="log-message">{{message.message}}<pretty-print data="message.trace"></td>
 									</tr>
 								</tbody>
 							</table>
