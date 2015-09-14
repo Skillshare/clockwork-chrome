@@ -40,6 +40,8 @@ Clockwork.controller('PanelController', function PanelController($scope, $http, 
 			});
 		});
 
+        $(".stupidtable").stupidtable();
+
 		chrome.devtools.network.onRequestFinished.addListener(function(request)
 		{
 			var headers = request.response.headers;
