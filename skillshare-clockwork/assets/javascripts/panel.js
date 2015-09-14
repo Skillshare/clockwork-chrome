@@ -221,20 +221,13 @@ Clockwork.controller('PanelController', function PanelController($scope, $http, 
 		var items = [];
 
 		var maxWidth = $('.data-grid-details').width() - 230;
-		var labelCount = Math.floor(maxWidth / 80);
-		var step = $scope.activeRequest.responseDuration / (maxWidth - 20);
+		var labelCount = Math.max(Math.floor(maxWidth / 80) - 2, 2);
+		var step = $scope.activeRequest.responseDuration / labelCount;
 
 		for (var j = 2; j < labelCount + 1; j++) {
 			items.push({
 				left: (j * 80 - 35).toString(),
-				time: Math.round(j * 80 * step).toString()
-			});
-		}
-
-		if (maxWidth - ((j - 1) * 80) > 45) {
-			items.push({
-				left: (maxWidth - 35).toString(),
-				time: Math.round(maxWidth * step).toString()
+				time: Math.round(j * step).toString()
 			});
 		}
 
@@ -312,10 +305,6 @@ Clockwork.controller('PanelController', function PanelController($scope, $http, 
 			value.width = value.duration / data.responseDuration * 100;
 
 			value.durationRounded = Math.round(value.duration);
-
-			if (value.durationRounded === 0) {
-				value.durationRounded = '< 1';
-			}
 
 			if (i == 'total') {
 				timeline.unshift(value);
